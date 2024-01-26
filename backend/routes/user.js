@@ -2,7 +2,8 @@ const express = require('express');
 const {User} = require('../db');
 const z = require('zod');
 const jwt = require('jsonwebtoken');
-const {JWT_SECRET} = require('../config')
+const {JWT_SECRET} = require('../config');
+const { middleware, authMiddleware } = require('../middleware');
 
 const router = express.Router();
 router.use(express.json())
@@ -76,9 +77,29 @@ router.post('/signin', async(req,res)=>{
     })
 })
 
+const updateBody = z.object({
+    password: z.string().optional(),
+    firstname: z.string().optional(),
+    lastname : z.string().optional()
+})
 
-router.get(('update', (req,res)=>{
+router.put("/update", authMiddleware, async (req, res) => {
+    const { success } = updateBody.safeParse(req.body)
+    if (!success) {
+        res.status(411).json({
+            message: "Error while updating information"
+        })
+    }
 
-}))
+    await User.updateOne({ _id: req.userId },
+        {   password: req.body.password, 
+            firstname: req.body.firstname,
+            lastname: req.body.lastname
+        })
+
+    res.json({
+        message: "Updated successfully"
+    })
+})
 
 module.exports = router;
