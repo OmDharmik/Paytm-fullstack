@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect("mongo_url")
+mongoose.connect("mongodb+srv://omdharmik:xcmr2eEQPPLFDeqK@exploration.q9i9q5x.mongodb.net/Paytm")
 .then(()=>{
     console.log("Database connected")
 })

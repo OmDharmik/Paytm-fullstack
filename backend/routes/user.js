@@ -57,7 +57,7 @@ const usersignin = z.object({
 
 router.post('/signin', async(req,res)=>{
     const userValidation = usersignin.safeParse(req.body)
-    if(!userValidation){
+    if(!userValidation.success){
         return res.status(411).json({
             msg: "invalid username"
         })
