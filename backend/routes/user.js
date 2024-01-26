@@ -40,19 +40,40 @@ router.post('/signup', async (req, res) => {
         lastname : req.body.lastname
     })
 
-
+    let usertoken;
     if(user){
-        const token = jwt.sign({userId: user._id},JWT_SECRET)
+        usertoken = jwt.sign({userId: user._id},JWT_SECRET)
     }
     
     res.status(400).json({
         msg: "User created successfully.",
-        token: `Bearer ${token}`
+        token: usertoken
     })
 });
 
-router.get('/signin', (req,res)=>{
-    res.send("hello")
+const usersignin = z.object({
+    username: z.string().email()
+})
+
+router.post('/signin', async(req,res)=>{
+    const userValidation = usersignin.safeParse(req.body)
+    if(!userValidation){
+        return res.status(411).json({
+            msg: "invalid username"
+        })
+    }
+
+    const existinguser = await User.findOne({username: req.body.username})
+    if(!existinguser){
+        return res.status(411).json({
+            msg: "User does not exists"
+        });
+    }
+
+    const token = jwt.sign({userId: existinguser._id},JWT_SECRET)
+    res.json({
+        token: token
+    })
 })
 
 

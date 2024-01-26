@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect("mongo url")
+mongoose.connect("mongo_url")
 .then(()=>{
     console.log("Database connected")
 })
