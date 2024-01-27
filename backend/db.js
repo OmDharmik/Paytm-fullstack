@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const { object, string } = require('zod');
 
-mongoose.connect("")
+mongoose.connect("mongo url")
 .then(()=>{
     console.log("Database connected")
 })
