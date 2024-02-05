@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const { object, string } = require('zod');
 
-mongoose.connect("mongodb+srv://omdharmik:xcmr2eEQPPLFDeqK@exploration.q9i9q5x.mongodb.net/Paytm")
+mongoose.connect("")
 .then(()=>{
     console.log("Database connected")
 })
