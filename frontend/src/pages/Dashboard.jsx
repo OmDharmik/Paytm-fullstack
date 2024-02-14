@@ -1,8 +1,7 @@
-import Header from '../components/Header'
 
 function Dashboard(){
-    return <div>
-        <Header />
+    return <div className="flex flex-col">
+
     </div>
 }
 
