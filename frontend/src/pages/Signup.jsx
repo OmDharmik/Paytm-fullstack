@@ -7,7 +7,7 @@ import BottomWarning  from "../components/BottomWarning";
 function Signup(){
     return ( <div className="flex h-screen bg-slate-400 justify-center">
         <div className="flex flex-col justify-center">
-            <div className="bg-white w-80 justify-center rounded-md">
+            <div className="bg-white w-80 justify-center rounded-md text-center">
                 <Heading label="Sign Up" />
                 <Paragraph label="Enter your information to create an account"></Paragraph>
                 <InputBox label="First Name" placeholder="John"></InputBox>
