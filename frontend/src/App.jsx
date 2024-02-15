@@ -1,6 +1,6 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import Signup from './pages/Signup';
-import Send from './pages/send';
+import Send from './pages/Send';
 import Dashboard from './pages/Dashboard'
 import Signin from './pages/Signin'
 
